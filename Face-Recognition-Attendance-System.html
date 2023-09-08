@@ -140,6 +140,31 @@
     <h3 style="font-size: 22px; color: beige;">23-August-2023 | <span id="clock"></span></h3>
 </div>
 
+   <div class="mt-3 text-center">
+    <h3 style="font-size: 22px; color: beige;">
+        <span id="date"></span> | <span id="clock"></span>
+    </h3>
+</div>
+
+<script>
+    function updateDateTime() {
+        const currentDate = new Date();
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        const formattedDate = currentDate.toLocaleDateString(undefined, options);
+        const timeString = currentDate.toLocaleTimeString();
+
+        document.getElementById('date').textContent = formattedDate;
+        document.getElementById('clock').textContent = timeString;
+    }
+
+    // Update date and time every second
+    setInterval(updateDateTime, 1000);
+
+    // Initial call to set the initial date and time
+    updateDateTime();
+</script>
+
+
     
 
     
