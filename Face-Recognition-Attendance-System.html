@@ -1,203 +1,184 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
-<style type='text/css'>
-    * {
-        padding: 0;
-        margin: 0;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-
-
-    body {
-        background-image: url('https://cdn6.aptoide.com/imgs/1/9/6/196732b687d55e9714815f4cb3071b05_screen.jpg');
-        background-size: cover;
-        background-image: cover;
-        font-family: sans-serif;
-        margin-top: 40px;
-        height: 100vh;
-        padding: 0;
-        margin: 0;
-    }
-
-    table {
-        border: 1px;
-        font-family: arial, sans-serif;
-        border-collapse: collapse;
-        width: 86%;
-        margin: auto;
-    }
-
-    td,
-    th {
-        border: 1px solid black !important;
-        padding: 5px;
-    }
-
-    tr:nth-child(even) {
-        background-color: #dddddd;
-    }
-
-    /* Define styles for the "responsive" class */
-.responsive {
-    /* Your CSS properties and values go here */
-    font-size: 18px;
-}
-
-
-/* Default styles for the header */
-.responsive-header {
-    color: white;
-    padding: 11px;
-    font-size: 44px;
-    width: auto;
-    margin: auto;
-}
-
-/* Media query to adjust styles for smaller screens */
-@media (max-width: 768px) {
-    .responsive-header {
-        font-size: 32px; /* Adjust the font size for smaller screens */
-    }
-}
-
-
-
-/* Center-align text and content within the form container */
-.responsive.text-center {
-    text-align: center;
-}
-
-/* Adjust the margin and padding for better spacing on smaller screens */
-@media (max-width: 768px) {
-    .col {
-        margin: 10px auto;
-        padding: 10px;
-    }
-    input[type="text"],
-    input[type="number"] {
-        width: 100%;
-    }
-}
-
-
-</style>
-
-
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>Face Recognition Based Attendance System</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+        .container {
+            padding: 20px;
+        }
+        .responsive-header {
+            color: white;
+            font-size: 44px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        @media (max-width: 768px) {
+            .responsive-header {
+                font-size: 32px;
+            }
+        }
+        .date-time {
+            font-size: 22px;
+            color: beige;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        .section-box {
+            border-radius: 20px;
+            background-color: rgba(255,255,255,0.8);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .section-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+        .card-header {
+            background-color: #0b4c61;
+            color: white;
+            border-radius: 20px 20px 0 0;
+            padding: 15px;
+            text-align: center;
+        }
+        .table {
+            margin-bottom: 0;
+        }
+        .custom-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 20px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .custom-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            color: white;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-control {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .form-control:focus {
+            outline: none;
+            box-shadow: 0 0 5px #667eea;
+        }
+        .total-users {
+            font-style: italic;
+            color: #666;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
 </head>
-
 <body>
-
-
-   <div class="responsive mt-3 text-center">
-    <h1 class="responsive-header">Face Recognition Based Attendance System</h1>
-</div>
-
-<div class="mt-3 text-center">
-    <h3 style="font-size: 22px; color: beige;">
-        <span id="date"></span> | <span id="clock"></span>
-    </h3>
-</div>
-
-    <div class="responsive row text-center" style="padding: 20px; margin: 20px;">
-
-    <div class="col"
-        style="border-radius: 20px; padding: 0px; background-color: rgba(211, 211, 211, 0.5); margin: 10px;">
-        <h2 style="border-radius: 15px 15px 0px 0px; background-color: #0b4c61; color: white; padding: 7px; text-align: center;">Today's Attendance <i class="material-icons">assignment</i></h2>
-        <a style="text-decoration: none; max-width: 100px;" href="/start">
-            <a href="https://docs.google.com/spreadsheets/d/1LVS7UsZEjho3m4AcPGntw06dNgBHhBoJ/edit?usp=drivesdk&ouid=104400454416405775825&rtpof=true&sd=true" style="text-decoration: none;">
-  <button style="font-size: 20px; font-weight: bold; border-radius: 10px; width: 250px; padding: 10px; margin-top: 30px; margin-bottom: 30px;" type="button" class="btn btn-primary">
-    Take Attendance <i class="material-icons">beenhere</i>
-  </button>
-</a>
-
-        </a>
-        <table style="background-color: white;">
-            <tr>
-                <td><b>S No</b></td>
-                <td><b>Name</b></td>
-                <td><b>ID</b></td>
-                <td><b>Time</b></td>
-</tr>
-<tr>
-                <td><b>1</b></td>
-                <td><b>Raj Soni</b></td>
-                <td><b>6</b></td>
-                <td><b>10:10 Am</b></td>
-            </tr>
-
-            <tr>
-                <td><b>2</b></td>
-                <td><b>Jeevan Mishra</b></td>
-                <td><b>12</b></td>
-                <td><b>10:12 Am</b></td>
-            </tr>
-            <tr>
-                <td><b>3</b></td>
-                <td><b></b></td>
-                <td><b></b></td>
-                <td><b></b></td>
-            </tr>
-            <!-- Add your table content here -->
-        </table>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1 class="responsive-header">Face Recognition Based Attendance System</h1>
+                <h3 class="date-time">
+                    <span id="date"></span> | <span id="clock"></span>
+                </h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card section-box">
+                    <div class="card-header">
+                        <h2>Today's Attendance <i class="material-icons">assignment</i></h2>
+                    </div>
+                    <div class="card-body text-center">
+                        <a class="btn custom-btn" href="/start">Take Attendance <i class="material-icons">beenhere</i></a>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>S No</th>
+                                        <th>Name</th>
+                                        <th>ID</th>
+                                        <th>Time</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Raj Soni</td>
+                                        <td>6</td>
+                                        <td>10:10 AM</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Jeevan Mishra</td>
+                                        <td>12</td>
+                                        <td>10:12 AM</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card section-box">
+                    <div class="card-header">
+                        <h2>Add New User <i class="material-icons">control_point_duplicate</i></h2>
+                    </div>
+                    <div class="card-body">
+                        <form action="/add" method="POST" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label for="newusername">Enter New User Name*</label>
+                                <input type="text" class="form-control" id="newusername" name="newusername" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="newuserid">Enter New User Id*</label>
+                                <input type="number" class="form-control" id="newuserid" name="newuserid" required>
+                            </div>
+                            <button type="submit" class="btn custom-btn">Add New User</button>
+                            <h5 class="total-users">Total Users in Database: 2</h5>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
-</div>
-
-
-<div class="responsive text-center" style="padding: 20px; margin: 10px;">
-    <div class="col" style="border-radius: 20px; padding: 0px; background-color: rgba(211, 211, 211, 0.5); margin: 0px auto; height: auto; max-width: 400px;">
-        <form action='/add' method="POST" enctype="multipart/form-data">
-            <h2 style="border-radius: 20px 20px 0px 0px; background-color: #0b4c61; color: white; padding: 10px;">Add New User <i class="material-icons">control_point_duplicate</i></h2>
-            <label for="newusername" style="font-size: 20px;"><b>Enter New User Name*</b></label>
-            <br>
-            <input type="text" id="newusername" name='newusername' style="font-size: 20px; margin: 10px auto;" required>
-            <br>
-            <label for="newuserid" style="font-size: 20px;"><b>Enter New User Id*</b></label>
-            <br>
-            <input type="number" id="newuserid" name='newuserid' style="font-size: 20px; margin: 10px auto;" required>
-            <br>
-            <a href="https://docs.google.com/spreadsheets/d/1tAoGsgr6Uq6HNjU-QfZwr9XtR3z0_AHipo5LadG6esY/edit?usp=drivesdk" target="_blank" rel="noopener noreferrer">
-                <button style="width: 232px; margin-top: 20px; font-size: 20px;" type='submit' class='btn btn-dark'>Add New User</button>
-            </a>
-            <br>
-            <h5 style="padding: 25px;"><i>Total Users in Database: 2</i></h5>
-        </form>
-    </div>
-</div>
-
-<script type="text/javascript">
-    function updateDateTime() {
-        const currentDate = new Date();
-
-        // Format the date as "Month Day, Year"
-        const options = { year: 'numeric', month: 'long', day: 'numeric' };
-        const formattedDate = currentDate.toLocaleDateString(undefined, options);
-
-        // Get the time as "Hour:Minute:Second AM/PM"
-        const timeString = currentDate.toLocaleTimeString();
-
-        // Update the date and time on the page
-        document.getElementById('date').textContent = formattedDate;
-        document.getElementById('clock').textContent = timeString;
-    }
-
-    // Update date and time every second
-    setInterval(updateDateTime, 1000);
-
-    // Initial call to set the initial date and time
-    updateDateTime();
-</script>
+    <script>
+        function updateDateTime() {
+            const currentDate = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            const formattedDate = currentDate.toLocaleDateString(undefined, options);
+            const timeString = currentDate.toLocaleTimeString();
+            document.getElementById('date').textContent = formattedDate;
+            document.getElementById('clock').textContent = timeString;
+        }
+        setInterval(updateDateTime, 1000);
+        updateDateTime();
+    </script>
 </body>
 </html>
